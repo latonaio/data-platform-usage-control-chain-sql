@@ -1,0 +1,46 @@
+CREATE TABLE `data_platform_usage_control_chain_usage_control_chain_data`
+(
+    `UsageControlChain`                varchar(300) NOT NULL,
+    `UsageControlLess`                 tinyint(1) DEFAULT NULL,
+    `Perpetual`                        tinyint(1) DEFAULT NULL,
+    `OneTime`                          tinyint(1) DEFAULT NULL,
+    `Rental`                           tinyint(1) DEFAULT NULL,
+    `Duration`                         float(10) DEFAULT NULL,
+    `DurationUnit`                     varchar(3) DEFAULT NULL,
+    `ValidityStartDate`                date DEFAULT NULL,
+    `ValidityStartTime`                time DEFAULT NULL,
+    `ValidityEndDate`                  date DEFAULT NULL,
+    `ValidityEndTime`                  time DEFAULT NULL,
+    `DeleteAfterValidityEnd`           tinyint(1) DEFAULT NULL,
+    `ServiceLabelRestriction`          tinyint(1) DEFAULT NULL,
+    `ApplicationRestriction`           tinyint(1) DEFAULT NULL,
+    `PurposeRestriction`               tinyint(1) DEFAULT NULL,
+    `BusinessPartnerRoleRestriction`   tinyint(1) DEFAULT NULL,
+    `DataStateRestriction`             tinyint(1) DEFAULT NULL,
+    `NumberOfUsageRestriction`         int(16) DEFAULT NULL,
+    `NumberOfActuaUsage`               int(16) DEFAULT NULL,
+    `IPAddressRestriction`             tinyint(1) DEFAULT NULL,
+    `MACAddressRestriction`            tinyint(1) DEFAULT NULL,
+    `ModifyIsAllowed`                  tinyint(1) DEFAULT NULL,
+    `LocalLoggingIsAllowed`            tinyint(1) DEFAULT NULL,
+    `RemoteNotificationIsAllowed`      tinyint(1) DEFAULT NULL,
+    `DestributeOnlyIfEncrypted`        tinyint(1) DEFAULT NULL,
+    `PostalCode`                       varchar(10) DEFAULT NULL,
+    `LocalSubRegion`                   varchar(3) DEFAULT NULL,
+    `LocalRegion`                      varchar(3) DEFAULT NULL,
+    `Country`                          varchar(3) DEFAULT NULL,
+    `GlobalRegion`                     varchar(3) DEFAULT NULL,
+    `TimeZone`                         varchar(3) DEFAULT NULL,
+    `CreationDate`                     date NOT NULL,
+    `CreationTime`                     date NOT NULL,
+    `LastChangeDate`                   date NOT NULL,
+    `LastChangeTime`                   date NOT NULL,
+    `IsMarkedForDeletion`              tinyint(1) DEFAULT NULL,
+    
+    PRIMARY KEY (`UsageControlChain`),
+
+    CONSTRAINT `DPFMUsageControlChainDataPostalCode_fk` FOREIGN KEY (`PostalCode`, `Country`) REFERENCES `data_platform_postal_code_postal_code_data` (`PostalCode`, `Country`),
+    CONSTRAINT `DPFMUsageControlChainDataDurationUnit_fk` FOREIGN KEY (`DurationUnit`) REFERENCES `data_platform_quantity_unit_quantity_unit_data` (`QuantityUnit`)
+    
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
